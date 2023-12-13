@@ -18,7 +18,10 @@ namespace Game
             //TODO - REMOVE THIS ON RELEASE
 #if UNITY_EDITOR
             if (!tickableProcessor)
+            {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
+                return;
+            }
 #endif
 
             tickableProcessor.AddTickable(playerInput);

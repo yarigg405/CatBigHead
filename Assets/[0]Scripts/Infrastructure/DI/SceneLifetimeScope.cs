@@ -13,6 +13,7 @@ namespace Infrastructure.DI
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponent(playerInput);
+            builder.Register<PlayerProvider>(Lifetime.Scoped);
         }
     }
 }
