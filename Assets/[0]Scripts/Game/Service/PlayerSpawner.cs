@@ -21,7 +21,7 @@ namespace Game
         {
             var player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity, spawnRoot);
             player.Construct(_playerInput, _tickableProcessor);
-
+            _tickableProcessor.AddTickable(player);
 
             _playerProvider.Player = player;
         }

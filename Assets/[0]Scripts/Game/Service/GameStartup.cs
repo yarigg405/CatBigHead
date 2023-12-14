@@ -7,27 +7,27 @@ namespace Game
 {
     internal class GameStartup : MonoBehaviour
     {
-        [Inject] private readonly PlayerInput playerInput;
-        [Inject] private readonly TickableProcessor tickableProcessor;
-        [Inject] private readonly GameManager gameManager;
+        [Inject] private readonly PlayerInput _playerInput;
+        [Inject] private readonly TickableProcessor _tickableProcessor;
+        [Inject] private readonly GameManager _gameManager;
         [SerializeField] private PlayerSpawner playerSpawner;
 
 
-        private void Start()
+        private void Awake()
         {
             //TODO - REMOVE THIS ON RELEASE
 #if UNITY_EDITOR
-            if (!tickableProcessor)
+            if (!_tickableProcessor)
             {
                 UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
                 return;
             }
 #endif
 
-            tickableProcessor.AddTickable(playerInput);
+            _tickableProcessor.AddTickable(_playerInput);
             playerSpawner.SpawnPlayer();
 
-            gameManager.StartGame();
+            _gameManager.StartGame();
         }
     }
 }

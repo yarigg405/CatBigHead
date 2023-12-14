@@ -8,9 +8,12 @@ namespace Infrastructure.GameSystem
     public sealed class TickableProcessor : MonoBehaviour, IGameStartListener, IGameFinishListener, IGamePauseListener
     {
         private readonly LinkedList<ITickable> _tickables = new();
+        private readonly List<ITickable> _ticlablesForAdding = new();
         private readonly List<ITickable> _tickablesForRemoving = new();
+        
 
         private readonly LinkedList<IFixedTickable> _fixedTickables = new();
+        private readonly List<IFixedTickable> _fixedTickablesForAdding = new();
         private readonly List<IFixedTickable> _fixedTickablesForRemoving = new();
 
         private bool _isGameActive = false;
@@ -18,7 +21,7 @@ namespace Infrastructure.GameSystem
 
         public void AddTickable(ITickable tickable)
         {
-            _tickables.AddLast(tickable);
+            _ticlablesForAdding.Add(tickable);
         }
 
         public void RemoveTickable(ITickable tickable)
@@ -42,6 +45,7 @@ namespace Infrastructure.GameSystem
         {
             if (!_isGameActive) return;
 
+            HandleAddingTickales();
             HandleRemovingTickables();
             HandleTick();
         }
@@ -55,17 +59,24 @@ namespace Infrastructure.GameSystem
             }
         }
 
+        private void HandleAddingTickales()
+        {
+            for (int i = 0; i < _ticlablesForAdding.Count; i++)
+            {
+                _tickables.AddLast(_ticlablesForAdding[i]);
+            }
+
+            _ticlablesForAdding.Clear();
+        }
+
         private void HandleRemovingTickables()
         {
-            if (_tickablesForRemoving.Count > 0)
+            for (int i = 0; i < _tickablesForRemoving.Count; i++)
             {
-                foreach (var remove in _tickablesForRemoving)
-                {
-                    _tickables.Remove(remove);
-                }
-
-                _tickablesForRemoving.Clear();
+                _tickables.Remove(_tickablesForRemoving[i]);
             }
+
+            _tickablesForRemoving.Clear();
         }
 
 
@@ -73,6 +84,7 @@ namespace Infrastructure.GameSystem
         {
             if (!_isGameActive) return;
 
+            HandleAddingFixedTickables();
             HandleRemovingFixedTickables();
             HandleFixedTick();
         }
@@ -86,17 +98,24 @@ namespace Infrastructure.GameSystem
             }
         }
 
+        private void HandleAddingFixedTickables()
+        {
+            for (int i = 0; i < _fixedTickablesForAdding.Count; i++)
+            {
+                _fixedTickables.AddLast(_fixedTickablesForAdding[i]);
+            }
+
+            _fixedTickablesForAdding.Clear();
+        }
+
         private void HandleRemovingFixedTickables()
         {
-            if (_fixedTickablesForRemoving.Count > 0)
+            for (int i = 0; i < _fixedTickablesForRemoving.Count; i++)
             {
-                foreach (var remove in _fixedTickablesForRemoving)
-                {
-                    _fixedTickables.Remove(remove);
-                }
-
-                _tickablesForRemoving.Clear();
+                _fixedTickables.Remove(_fixedTickablesForRemoving[i]);
             }
+
+            _tickablesForRemoving.Clear();
         }
 
 

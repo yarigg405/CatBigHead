@@ -16,7 +16,7 @@ namespace Game.Components
         }
 
         void ITickable.Tick(float deltaTime)
-        {
+        {            
             transform.position = transform.position + _moveDirection * moveSpeed * deltaTime;
         }
     }

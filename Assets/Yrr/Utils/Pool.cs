@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -8,12 +9,16 @@ namespace Yrr.Utils
     {
         [SerializeField] private T prefab;
         [SerializeField] private Transform objectsInPoolContainer;
-        [SerializeField] private Transform worldTransform;
         [SerializeField] private int initializeCount = 10;
 
         private readonly Queue<T> _pooledObjects = new();
 
-        private void Awake()
+        public event Action<T> OnNewObjectInstantiated;
+        public event Action<T> OnObjectSpawned;
+        public event Action<T> OnObjectDespawned;
+
+
+        private void Start()
         {
             InitializePool(prefab, initializeCount);
         }
@@ -23,30 +28,41 @@ namespace Yrr.Utils
             for (var i = 0; i < initialCount; i++)
             {
                 var bullet = Instantiate(prefab, objectsInPoolContainer);
+                OnNewObjectInstantiated?.Invoke(bullet);
                 _pooledObjects.Enqueue(bullet);
             }
         }
 
+        protected virtual void InitializePooledObjects()
+        {
+        }
+
         public T SpawnObject(Transform parentForNewObject = null)
         {
-            var parent = parentForNewObject == null ? worldTransform : parentForNewObject;
-
             if (_pooledObjects.TryDequeue(out var newObject))
             {
-                newObject.transform.SetParent(parent);
+                newObject.transform.SetParent(parentForNewObject);
             }
             else
             {
-                newObject = Instantiate(prefab, parent);
+                newObject = Instantiate(prefab, parentForNewObject);
+                OnNewObjectInstantiated?.Invoke(newObject);
             }
 
+            OnObjectSpawned?.Invoke(newObject);
             return newObject;
         }
 
         public void DespawnObject(T poolableObject)
         {
             _pooledObjects.Enqueue(poolableObject);
-            poolableObject.transform.SetParent(this.objectsInPoolContainer);
+            poolableObject.transform.SetParent(objectsInPoolContainer);
+            OnObjectDespawned?.Invoke(poolableObject);
+        }
+
+        public IEnumerable<T> GetPooledObjects()
+        {
+            return _pooledObjects;
         }
     }
 }

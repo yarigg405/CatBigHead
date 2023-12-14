@@ -2,40 +2,38 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 namespace Game.Entities
 {
     internal abstract class Entity : MonoBehaviour, IEntity
     {
-        private readonly List<object> _components = new();
+        private readonly Dictionary<Type, object> _components = new();
 
         public T Get<T>()
         {
-            foreach (var component in _components)
-            {
-                if (component is T result)
-                    return result;
-            }
-
-            throw new Exception($"Element of type {typeof(T).Name} is not found!");
+            return (T)_components[typeof(T)];
         }
 
         public bool TryGet<T>(out T element)
         {
-            foreach (var component in _components)
+            if (_components.TryGetValue(typeof(T), out var result))
             {
-                if (component is T result)
-                {
-                    element = result;
-                    return true;
-                }
+                element = (T)result;
+                return true;
             }
-            element = default;
+
+            element = default(T);
             return false;
         }
 
         public void Add(object component)
         {
-            _components.Add(component);
+            _components.Add(component.GetType(), component);
+        }
+
+        public void Add(object component, Type componentType)
+        {
+            _components.Add(componentType, component);
         }
     }
 }

@@ -5,22 +5,16 @@ using UnityEngine;
 
 namespace Game.Player
 {
-    internal sealed class PlayerEntity : Entity
+    internal sealed class PlayerEntity : TickableEntity
     {
         [SerializeField] private PlayerMover playerMover;
-        private TickableProcessor _tickableProcessor;
+        [SerializeField] private BulletsSpawner shooterComponent;
 
 
         internal void Construct(PlayerInput input, TickableProcessor tickableProcessor)
         {
             playerMover.Construct(input);
-            _tickableProcessor = tickableProcessor;
-
-            var tickables = GetComponentsInChildren<ITickable>();
-            foreach (var tickable in tickables)
-            {
-                _tickableProcessor.AddTickable(tickable);
-            }
+            shooterComponent.Construct(tickableProcessor);
         }
     }
 }
