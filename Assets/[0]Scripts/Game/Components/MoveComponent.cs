@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.Components
 {
-    internal sealed class MoveComponent : MonoBehaviour, ITickable
+    internal sealed class MoveComponent : MonoBehaviour, ITickable, IComponent
     {
         [SerializeField] private float moveSpeed = 5f;
         private Vector3 _moveDirection;

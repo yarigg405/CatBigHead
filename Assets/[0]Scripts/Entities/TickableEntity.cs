@@ -1,4 +1,5 @@
-﻿using Infrastructure.GameSystem;
+﻿using Game.Components;
+using Infrastructure.GameSystem;
 
 
 namespace Game.Entities
@@ -10,6 +11,12 @@ namespace Game.Entities
         protected virtual void Awake()
         {
             _tickables = GetComponentsInChildren<ITickable>();
+
+            var childrenComponents = GetComponentsInChildren<IComponent>();
+            foreach (var child in childrenComponents)
+            {
+                Add(child);
+            }
         }
 
         void ITickable.Tick(float deltaTime)

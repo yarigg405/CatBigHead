@@ -59,7 +59,6 @@ namespace Game.Components
         {
             _currentShotsCount--;
             OnShoot?.Invoke();
-            Debug.Log("Shot");
 
             if (_currentShotsCount <= 0)
                 ResetShooting();

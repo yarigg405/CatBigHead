@@ -7,18 +7,19 @@ namespace Game
 {
     internal sealed class BulletEntity : TickableEntity
     {
-        [SerializeField] private MoveComponent bulletMover;
+        [SerializeField] private DamageDealComponent damageDealer;
 
         internal void Construct()
         {
-            Add(bulletMover);
             var destroy = new DestroyComponent();
             Add(destroy);
+            damageDealer.OnDamageDealed += destroy.Destroy;
         }
 
         private void OnDestroy()
         {
             Get<DestroyComponent>().Clear();
+            damageDealer.OnDamageDealed -= Get<DestroyComponent>().Destroy;
         }
     }
 }
