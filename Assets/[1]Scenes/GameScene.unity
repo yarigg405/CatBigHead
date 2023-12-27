@@ -835,6 +835,12 @@ MonoBehaviour:
     EnemySpawnSettings:
       SpawnCount: 10
       DelayBetweenSpawn: 0.5
+  - EnemyPrefab: {fileID: 6773484374026190521, guid: 6bd8101493a1d5342a5cfe4dc5e959cd, type: 3}
+    SpawnOnTimeSeconds: 1
+    SpawnPositionRelativeScreenEdge: {x: 2, y: 1}
+    EnemySpawnSettings:
+      SpawnCount: 10
+      DelayBetweenSpawn: 0.5
   enemiesPool: {fileID: 1825968765}
   gameObjectsContainer: {fileID: 2010005860}
 --- !u!114 &1825968765

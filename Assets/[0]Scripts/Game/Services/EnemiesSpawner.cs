@@ -3,6 +3,7 @@ using Game.Enemies;
 using Infrastructure.GameSystem;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
 
@@ -31,10 +32,35 @@ namespace Game
 
             _tickableProcessor.AddTickable(this);
             _gameManager.AddListener(this);
-            enemiesPool.OnNewObjectInstantiated += SetupEnemy;
-            foreach (var pooled in enemiesPool.GetPooledObjects())
+
+
+            InitializePool(spawnNodes);
+
+            var allPooled = enemiesPool.GetPooledObjects();
+            foreach (var pooled in allPooled)
             {
                 SetupEnemy(pooled);
+            }
+
+            enemiesPool.OnNewObjectInstantiated += SetupEnemy;
+        }
+
+        private void InitializePool(SpawnNode[] spawnNodes)
+        {
+            Dictionary<EnemyEntity, int> prefabs = new();
+            for (int i = 0; i < spawnNodes.Length; i++)
+            {
+                var node = spawnNodes[i];
+                if (!prefabs.ContainsKey(node.EnemyPrefab))
+                    prefabs.Add(node.EnemyPrefab, 0);
+
+                prefabs[node.EnemyPrefab] += node.EnemySpawnSettings.SpawnCount + 1;
+            }
+
+            foreach (var prefab in prefabs)
+            {
+                var amount = Mathf.Min(prefab.Value, 10);
+                enemiesPool.PopulateWith(prefab.Key, amount);
             }
         }
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 
@@ -27,7 +28,6 @@ namespace Yrr.Utils
             while (amount > 0)
             {
                 var go = CreateNewObject(prefab);
-                _cachedIds.Add(go.GetInstanceID(), key);
                 _pooledObjects[key].Enqueue(go);
                 amount--;
             }
@@ -74,7 +74,9 @@ namespace Yrr.Utils
 
         private T CreateNewObject(T prefab)
         {
+            var key = prefab.GetInstanceID();
             var go = Instantiate(prefab, objectsInPoolContainer);
+            _cachedIds.Add(go.GetInstanceID(), key);
             OnNewObjectInstantiated?.Invoke(go);
             return go;
         }
