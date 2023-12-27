@@ -121,7 +121,7 @@ namespace Game
                         countOfSpawn--;
                     }
 
-                    currentSpawnTime -= Time.deltaTime;
+                    currentSpawnTime += Time.deltaTime;
                 }
                 yield return new WaitForEndOfFrame();
             }
