@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenBursts: 1
-  shotsCountInBurst: 3
+  shotsCountInBurst: 1
   timeBetweenShots: 0.1
 --- !u!114 &6324038946553443377
 MonoBehaviour:
@@ -163,6 +163,8 @@ GameObject:
   - component: {fileID: 6111364614478435105}
   - component: {fileID: 2881786840178053116}
   - component: {fileID: 4455327886565779228}
+  - component: {fileID: 154133432}
+  - component: {fileID: 154133433}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -283,6 +285,32 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &154133432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838771692788368695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f5c1fca3c5c06684b96c5c812456d51b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MaxHealth>k__BackingField: 3
+--- !u!114 &154133433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6838771692788368695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e8f5600197bc034195661dac2b245b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 154133432}
 --- !u!1 &6838771693287388160
 GameObject:
   m_ObjectHideFlags: 0

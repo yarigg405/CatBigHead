@@ -27,9 +27,9 @@ namespace Yrr.Utils
         {
             for (var i = 0; i < initialCount; i++)
             {
-                var bullet = Instantiate(prefab, objectsInPoolContainer);
-                OnNewObjectInstantiated?.Invoke(bullet);
-                _pooledObjects.Enqueue(bullet);
+                var pooledObject = Instantiate(prefab, objectsInPoolContainer);
+                OnNewObjectInstantiated?.Invoke(pooledObject);
+                _pooledObjects.Enqueue(pooledObject);
             }
         }
 
@@ -57,6 +57,7 @@ namespace Yrr.Utils
         {
             _pooledObjects.Enqueue(poolableObject);
             poolableObject.transform.SetParent(objectsInPoolContainer);
+            poolableObject.transform.localPosition = Vector3.zero;
             OnObjectDespawned?.Invoke(poolableObject);
         }
 

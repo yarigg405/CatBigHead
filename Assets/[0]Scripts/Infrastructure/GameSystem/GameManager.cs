@@ -40,6 +40,7 @@ namespace Infrastructure.GameSystem
             }
         }
 
+        [ContextMenu("Pause")]
         public void PauseGame()
         {
             _gameState = GameState.PAUSE;
@@ -54,6 +55,7 @@ namespace Infrastructure.GameSystem
             }
         }
 
+        [ContextMenu("UnPause")]
         public void UnPauseGame()
         {
             _gameState = GameState.PLAY;

@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 
-namespace Game
+namespace Game.Components
 {
-    internal sealed class HealthComponent : MonoBehaviour
+    internal sealed class HealthComponent : MonoBehaviour, IComponent
     {
         [field: SerializeField] public int MaxHealth { get; private set; }
         internal int CurrentHealth { get; private set; }

@@ -5,28 +5,16 @@ using UnityEngine;
 
 namespace Game
 {
-    internal sealed class BulletsSpawner : MonoBehaviour
+    internal sealed class BulletsSpawner : MonoBehaviour, INeedTickableProcessor
     {
         [SerializeField] private BulletsPool pool;
         [SerializeField] private ShootTimerComponent timerComponent;
         private TickableProcessor _tickableProcessor;
 
 
-        internal void Construct(TickableProcessor tickableProcessor)
-        {
-            pool.OnNewObjectInstantiated += SetupBullet;
-            foreach (var bullet in pool.GetPooledObjects())
-            {
-                SetupBullet(bullet);
-            }
-            _tickableProcessor = tickableProcessor;
-        }
-
-
         private void OnDestroy()
         {
             pool.OnNewObjectInstantiated -= SetupBullet;
-
         }
 
 
@@ -55,6 +43,17 @@ namespace Game
             bullet.Construct();
             _tickableProcessor.AddTickable(bullet);
             bullet.Get<DestroyComponent>().OnDestroy += () => pool.DespawnObject(bullet);
+        }
+
+        void INeedTickableProcessor.SetTickableProcessor(TickableProcessor processor)
+        {
+            pool.OnNewObjectInstantiated += SetupBullet;
+            _tickableProcessor = processor;
+
+            foreach (var bullet in pool.GetPooledObjects())
+            {
+                SetupBullet(bullet);
+            }            
         }
     }
 }
