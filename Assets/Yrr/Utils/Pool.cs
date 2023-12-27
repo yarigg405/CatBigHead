@@ -50,6 +50,8 @@ namespace Yrr.Utils
             }
 
             OnObjectSpawned?.Invoke(newObject);
+
+            newObject.gameObject.SetActive(true);
             return newObject;
         }
 

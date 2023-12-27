@@ -53,6 +53,8 @@ namespace Yrr.Utils
             go.transform.SetParent(parent);
 
             OnObjectSpawned?.Invoke(go);
+
+            go.gameObject.SetActive(true);
             return go;
         }
 
