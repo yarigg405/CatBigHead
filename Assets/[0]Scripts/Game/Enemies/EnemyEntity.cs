@@ -10,7 +10,7 @@ namespace Game.Enemies
     {
         [SerializeField] private HealthComponent health;
 
-        internal void Construct(TickableProcessor tickableProcessor)
+        internal void Construct(TickableProcessor tickableProcessor, PlayerProvider playerProvider)
         {
             var destroy = new DestroyComponent();
             Add(destroy);
@@ -20,6 +20,12 @@ namespace Game.Enemies
             foreach (var needTickable in needTickables)
             {
                 needTickable.SetTickableProcessor(tickableProcessor);
+            }
+
+            var needPlayerArr = GetComponentsInChildren<INeedPlayerReference>();
+            foreach (var needPlayer in needPlayerArr)
+            {
+                needPlayer.SetPlayer(playerProvider.Player);
             }
         }
 

@@ -3,7 +3,7 @@
 
 namespace Game.Components
 {
-    public interface INeedTickableProcessor
+    internal interface INeedTickableProcessor
     {
         void SetTickableProcessor(TickableProcessor processor);
     }

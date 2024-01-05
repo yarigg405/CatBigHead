@@ -22,6 +22,7 @@ namespace Game
 
         [Inject] private readonly TickableProcessor _tickableProcessor;
         [Inject] private readonly GameManager _gameManager;
+        [Inject] private readonly PlayerProvider _playerProvider;
         private bool _isPaused = false;
 
 
@@ -78,7 +79,7 @@ namespace Game
 
         private void SetupEnemy(EnemyEntity entity)
         {
-            entity.Construct(_tickableProcessor);
+            entity.Construct(_tickableProcessor, _playerProvider);
             _tickableProcessor.AddTickable(entity);
             entity.Get<DestroyComponent>().OnDestroy += () => enemiesPool.DespawnObject(entity);
         }
