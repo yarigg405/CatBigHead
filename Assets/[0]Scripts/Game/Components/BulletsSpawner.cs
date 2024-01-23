@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Game
 {
-    internal sealed class BulletsSpawner : MonoBehaviour, INeedTickableProcessor
+    internal class BulletsSpawner : MonoBehaviour, INeedTickableProcessor
     {
-        [SerializeField] private BulletsPool pool;
+        [SerializeField] protected BulletsPool pool;
         [SerializeField] private ShootTimerComponent timerComponent;
         private TickableProcessor _tickableProcessor;
 
@@ -29,7 +29,7 @@ namespace Game
             timerComponent.OnShoot -= TryShot;
         }
 
-        private void TryShot()
+        protected virtual void TryShot()
         {
             var bullet = pool.SpawnObject();
 
