@@ -396,7 +396,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d59b39848f0cb74cb8d2797ea6d198c, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -621,7 +621,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d59b39848f0cb74cb8d2797ea6d198c, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -721,7 +721,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d59b39848f0cb74cb8d2797ea6d198c, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -813,19 +813,58 @@ MonoBehaviour:
   m_GameObject: {fileID: 1361300549}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f7439edf25955b47aec9ba3848a5e0d, type: 3}
+  m_Script: {fileID: 11500000, guid: 6b364d8d33b03664a9e424c330da18d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModifier: 0.6
-  settings:
-  - <Renderer>k__BackingField: {fileID: 1023820505}
-    <Speed>k__BackingField: 0.01
-  - <Renderer>k__BackingField: {fileID: 1337449895}
-    <Speed>k__BackingField: 0.02
-  - <Renderer>k__BackingField: {fileID: 1500706494}
-    <Speed>k__BackingField: 0.03
-  - <Renderer>k__BackingField: {fileID: 458403552}
-    <Speed>k__BackingField: 0.05
+  parallaxCamera: {fileID: 1370005609}
+  Speed: -5
+  Elements:
+  - GameObjects:
+    - {fileID: 1023820503}
+    SpeedRatio: 0.1
+    RepositionLogic:
+      PositionMode: 0
+      ScaleHeight: 0
+      SortingOrder: 0
+      MinYPercent: 0
+      MaxYPercent: 0
+      MinXPercent: 0
+      MaxXPercent: 0
+  - GameObjects:
+    - {fileID: 1337449894}
+    SpeedRatio: 0.2
+    RepositionLogic:
+      PositionMode: 0
+      ScaleHeight: 0
+      SortingOrder: 0
+      MinYPercent: 0
+      MaxYPercent: 0
+      MinXPercent: 0
+      MaxXPercent: 0
+  - GameObjects:
+    - {fileID: 1500706493}
+    SpeedRatio: 0.3
+    RepositionLogic:
+      PositionMode: 0
+      ScaleHeight: 0
+      SortingOrder: 0
+      MinYPercent: 0
+      MaxYPercent: 0
+      MinXPercent: 0
+      MaxXPercent: 0
+  - GameObjects:
+    - {fileID: 458403551}
+    SpeedRatio: 0.4
+    RepositionLogic:
+      PositionMode: 0
+      ScaleHeight: 0
+      SortingOrder: 0
+      MinYPercent: 0
+      MaxYPercent: 0
+      MinXPercent: 0
+      MaxXPercent: 0
+  IsHorizontal: 1
+  WrapOverlap: 0
 --- !u!1 &1370005607
 GameObject:
   m_ObjectHideFlags: 0
@@ -947,7 +986,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9d59b39848f0cb74cb8d2797ea6d198c, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
