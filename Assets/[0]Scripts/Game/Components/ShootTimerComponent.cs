@@ -32,6 +32,7 @@ namespace Game.Components
 
         void ITickable.Tick(float deltaTime)
         {
+            if (!enabled) return;
             if (_currentTimeBetweenBursts > 0)
             {
                 HandleTimeBetweenBursts(deltaTime);
