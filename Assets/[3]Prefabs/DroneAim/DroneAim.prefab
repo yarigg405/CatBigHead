@@ -127,6 +127,7 @@ GameObject:
   - component: {fileID: 7824945668114806748}
   - component: {fileID: 7824945668114806749}
   - component: {fileID: 3850303725294399837}
+  - component: {fileID: 3621681109685381886}
   m_Layer: 0
   m_Name: DroneAim
   m_TagString: Untagged
@@ -176,7 +177,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e8f5600197bc034195661dac2b245b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 7824945668114806751}
 --- !u!114 &7824945668114806750
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -262,6 +262,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lookOnlyOnStart: 0
+--- !u!114 &3621681109685381886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7824945668114806722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4cb5c43a0390064aabfa50a85658701, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: {fileID: 7824945668114806751}
+  damageReceiver: {fileID: 7824945668114806745}
 --- !u!1 &8745904010191118551
 GameObject:
   m_ObjectHideFlags: 0

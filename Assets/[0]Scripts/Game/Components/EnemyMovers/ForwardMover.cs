@@ -10,7 +10,7 @@ namespace Game.Components
 
         void ITickable.Tick(float deltaTime)
         {
-            transform.position = transform.position - transform.right * deltaTime;
+            transform.position = transform.position - transform.right * deltaTime * speed;
         }
     }
 }
