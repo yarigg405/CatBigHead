@@ -118,9 +118,6 @@ GameObject:
   - component: {fileID: 6219367003536317722}
   - component: {fileID: 1402627459680021436}
   - component: {fileID: 6794370344310646089}
-  - component: {fileID: 5567177483385872983}
-  - component: {fileID: 3981661704948069146}
-  - component: {fileID: 1438966557028139097}
   m_Layer: 0
   m_Name: PlayerBullet
   m_TagString: Untagged
@@ -141,7 +138,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 511405988827561335}
-  - {fileID: 8457073171655446343}
+  - {fileID: 7237827272577811036}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -258,48 +255,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &5567177483385872983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511405989209246785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fcf5245d476d3cb4db9a0625bdb4495f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  controlledEntity: {fileID: 1831786962020802400}
-  effectsSpawner: {fileID: 3981661704948069146}
---- !u!114 &3981661704948069146
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511405989209246785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: {fileID: 1438966557028139097}
---- !u!114 &1438966557028139097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 511405989209246785}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ce8146d9163d94bbaf8bf2e602f448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 2897675637289532512, guid: 215e00e9b56e4144ebf99f622f775c40, type: 3}
-  objectsInPoolContainer: {fileID: 8457073171655446343}
-  initializeCount: 1
 --- !u!1 &511405989320128182
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,11 +435,88 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229141257626059822}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
+  m_Father: {fileID: 7237827272577811036}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &3413123288815589650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7237827272577811036}
+  - component: {fileID: 5076324914685006984}
+  - component: {fileID: 2573065648868858843}
+  - component: {fileID: 7161683307842901622}
+  m_Layer: 0
+  m_Name: FX
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7237827272577811036
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413123288815589650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 8457073171655446343}
   m_Father: {fileID: 511405989209246790}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5076324914685006984
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413123288815589650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcf5245d476d3cb4db9a0625bdb4495f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controlledEntity: {fileID: 1831786962020802400}
+  effectsSpawner: {fileID: 2573065648868858843}
+--- !u!114 &2573065648868858843
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413123288815589650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pool: {fileID: 7161683307842901622}
+--- !u!114 &7161683307842901622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413123288815589650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ce8146d9163d94bbaf8bf2e602f448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefab: {fileID: 2897675637289532512, guid: 215e00e9b56e4144ebf99f622f775c40, type: 3}
+  objectsInPoolContainer: {fileID: 8457073171655446343}
+  initializeCount: 1
