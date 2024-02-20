@@ -1,5 +1,6 @@
 using Game.Components;
 using Game.Entities;
+using Infrastructure.GameSystem;
 using UnityEngine;
 
 
@@ -9,11 +10,17 @@ namespace Game
     {
         [SerializeField] private DamageDealComponent damageDealer;
 
-        internal void Construct()
+        internal void Construct(TickableProcessor tickableProcessor)
         {
             var destroy = new DestroyComponent();
             Add(destroy);
             damageDealer.OnDamageDealed += destroy.Destroy;
+
+            var needTickables = GetComponentsInChildren<INeedTickableProcessor>();
+            foreach (var needTickable in needTickables)
+            {
+                needTickable.SetTickableProcessor(tickableProcessor);
+            }
         }
 
         private void OnDestroy()

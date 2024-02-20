@@ -136,11 +136,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6838771692788368688, guid: 4f8bd93cb15852e41888090ac8efd8d4, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.26
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6838771692788368688, guid: 4f8bd93cb15852e41888090ac8efd8d4, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6838771692788368688, guid: 4f8bd93cb15852e41888090ac8efd8d4, type: 3}
       propertyPath: m_LocalPosition.z
@@ -191,6 +191,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 960627789808505627, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: spawnNodes.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 960627789808505627, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: spawnNodes.Array.data[0].EnemyPrefab
+      value: 
+      objectReference: {fileID: 2784873602459164662, guid: 9a95ef5d2fe1eed44928415dca9f2b9a, type: 3}
+    - target: {fileID: 960627789808505627, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: spawnNodes.Array.data[1].SpawnOnTimeSeconds
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 960627789808505627, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: spawnNodes.Array.data[1].SpawnPositionRelativeScreenEdge.y
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 3509329529202806344, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -59,7 +59,6 @@ namespace Yrr.Utils
         {
             _pooledObjects.Enqueue(poolableObject);
             poolableObject.transform.SetParent(objectsInPoolContainer);
-            poolableObject.transform.localPosition = Vector3.zero;
             OnObjectDespawned?.Invoke(poolableObject);
         }
 

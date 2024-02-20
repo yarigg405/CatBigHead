@@ -40,7 +40,7 @@ namespace Game
 
         private void SetupBullet(BulletEntity bullet)
         {
-            bullet.Construct();
+            bullet.Construct(_tickableProcessor);
             _tickableProcessor.AddTickable(bullet);
             bullet.Get<DestroyComponent>().OnDestroy += () => pool.DespawnObject(bullet);
         }
@@ -53,7 +53,7 @@ namespace Game
             foreach (var bullet in pool.GetPooledObjects())
             {
                 SetupBullet(bullet);
-            }            
+            }
         }
     }
 }

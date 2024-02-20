@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game
 {
-    internal sealed class LifeTimerComponent : MonoBehaviour, ITickable
+    internal sealed class LifeTimerComponent : MonoBehaviour, ITickable, IComponent
     {
         [SerializeField] private Entity entity;
         [SerializeField] private float lifeTime = 3f;
@@ -22,7 +22,7 @@ namespace Game
         {
             _currentLifeTime -= deltaTime;
 
-            if(_currentLifeTime <= 0f)
+            if (_currentLifeTime <= 0f)
             {
                 entity.Get<DestroyComponent>().Destroy();
             }

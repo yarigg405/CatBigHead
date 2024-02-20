@@ -10,7 +10,7 @@ namespace Game.Entities
 
         protected virtual void Awake()
         {
-            _tickables = GetComponentsInChildren<ITickable>();
+            _tickables = GetComponentsInChildren<ITickable>(true);
 
             var childrenComponents = GetComponentsInChildren<IComponent>();
             foreach (var child in childrenComponents)
