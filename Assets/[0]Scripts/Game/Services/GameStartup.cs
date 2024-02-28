@@ -19,6 +19,7 @@ namespace Game
 #if UNITY_EDITOR
             if (!_tickableProcessor)
             {
+                LastSceneLoaderTest.LastSceneName = gameObject.scene.name;
                 UnityEngine.SceneManagement.SceneManager.LoadScene("StartScene");
                 return;
             }

@@ -8,7 +8,7 @@ namespace Game
     {
         private void Start()
         {
-            SceneManager.LoadScene("GameScene");
+            SceneManager.LoadScene(LastSceneLoaderTest.LastSceneName);
         }
     }
 }
