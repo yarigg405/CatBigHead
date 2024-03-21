@@ -1,6 +1,7 @@
 using Game.Components;
 using Infrastructure.GameSystem;
 using UnityEngine;
+using VContainer;
 
 
 namespace Game.Player
@@ -10,11 +11,12 @@ namespace Game.Player
         [SerializeField] internal MoveComponent moveComponent;
         private PlayerInput _input;
 
-        internal void Construct(PlayerInput input)
+        [Inject]
+        internal void Construct(PlayerInput playerInput)
         {
-            _input = input;
+            _input = playerInput;
         }
-      
+
         void ITickable.Tick(float deltaTime)
         {
             moveComponent.Move(_input.InputData);

@@ -6,6 +6,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
+using ITickable = Infrastructure.GameSystem.ITickable;
 
 
 namespace Game
@@ -23,6 +25,7 @@ namespace Game
         [Inject] private readonly TickableProcessor _tickableProcessor;
         [Inject] private readonly GameManager _gameManager;
         [Inject] private readonly PlayerProvider _playerProvider;
+        [Inject] private readonly IObjectResolver _objectResolver;
         private bool _isPaused = false;
 
 
@@ -79,7 +82,7 @@ namespace Game
 
         private void SetupEnemy(EnemyEntity entity)
         {
-            entity.Construct(_tickableProcessor, _playerProvider);
+            _objectResolver.InjectGameObject(entity.gameObject);
             _tickableProcessor.AddTickable(entity);
             entity.Get<DestroyComponent>().OnDestroy += () => enemiesPool.DespawnObject(entity);
         }

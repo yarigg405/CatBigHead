@@ -2,16 +2,18 @@ using Game.Player;
 using Infrastructure.GameSystem;
 using System.Collections;
 using UnityEngine;
+using VContainer;
 
 
 namespace Game.Components
 {
-    internal sealed class LookToPlayerComponent : MonoBehaviour, INeedPlayerReference, ITickable
+    internal sealed class LookToPlayerComponent : MonoBehaviour, ITickable
     {
         [SerializeField] private bool lookOnlyOnStart;
         private Transform _playerTransform;
 
-        void INeedPlayerReference.SetPlayer(PlayerEntity player)
+        [Inject]
+        private void Construct(PlayerEntity player)
         {
             _playerTransform = player.transform;
         }

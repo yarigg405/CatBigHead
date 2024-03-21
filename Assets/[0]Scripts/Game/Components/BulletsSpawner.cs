@@ -1,15 +1,19 @@
 using Game.Components;
 using Infrastructure.GameSystem;
 using UnityEngine;
+using VContainer;
+using VContainer.Unity;
 
 
 namespace Game
 {
-    internal class BulletsSpawner : MonoBehaviour, INeedTickableProcessor
+    internal class BulletsSpawner : MonoBehaviour
     {
         [SerializeField] protected BulletsPool pool;
         [SerializeField] private ShootTimerComponent timerComponent;
+
         private TickableProcessor _tickableProcessor;
+        private IObjectResolver _objectResolver;
 
 
         private void OnDestroy()
@@ -40,15 +44,17 @@ namespace Game
 
         private void SetupBullet(BulletEntity bullet)
         {
-            bullet.Construct(_tickableProcessor);
+            _objectResolver.InjectGameObject(bullet.gameObject);
             _tickableProcessor.AddTickable(bullet);
             bullet.Get<DestroyComponent>().OnDestroy += () => pool.DespawnObject(bullet);
         }
 
-        void INeedTickableProcessor.SetTickableProcessor(TickableProcessor processor)
+        [Inject]
+        private void Construct(TickableProcessor processor, IObjectResolver resolver)
         {
             pool.OnNewObjectInstantiated += SetupBullet;
             _tickableProcessor = processor;
+            _objectResolver = resolver;
 
             foreach (var bullet in pool.GetPooledObjects())
             {

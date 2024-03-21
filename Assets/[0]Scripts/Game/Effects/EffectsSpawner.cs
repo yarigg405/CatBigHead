@@ -2,11 +2,12 @@ using Game.Components;
 using Game.Fx;
 using Infrastructure.GameSystem;
 using UnityEngine;
+using VContainer;
 
 
 namespace Game
 {
-    internal sealed class EffectsSpawner : MonoBehaviour, INeedTickableProcessor
+    internal sealed class EffectsSpawner : MonoBehaviour
     {
         [SerializeField] private EffectsPool pool;
         private TickableProcessor _tickableProcessor;
@@ -17,7 +18,8 @@ namespace Game
             effect.transform.position = transform.position;
         }
 
-        void INeedTickableProcessor.SetTickableProcessor(TickableProcessor processor)
+        [Inject]
+        private void Construct(TickableProcessor processor)
         {
             pool.OnNewObjectInstantiated += SetupEffect;
             _tickableProcessor = processor;

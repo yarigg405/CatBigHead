@@ -2,6 +2,7 @@
 using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 
 namespace Game
@@ -12,15 +13,16 @@ namespace Game
         [SerializeField] private Transform spawnRoot;
         [SerializeField] Vector3 spawnPosition;
 
+        [Inject] private readonly IObjectResolver _resolver;
         [Inject] private readonly PlayerProvider _playerProvider;
-        [Inject] private readonly PlayerInput _playerInput;
         [Inject] private readonly TickableProcessor _tickableProcessor;
+       
 
 
         internal void SpawnPlayer()
         {
             var player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity, spawnRoot);
-            player.Construct(_playerInput, _tickableProcessor);
+            _resolver.InjectGameObject(player.gameObject);
             _tickableProcessor.AddTickable(player);
 
             _playerProvider.Player = player;

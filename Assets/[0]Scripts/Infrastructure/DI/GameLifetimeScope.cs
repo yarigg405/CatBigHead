@@ -1,4 +1,3 @@
-using Game;
 using Infrastructure.GameSystem;
 using Infrastructure.ScenesLoading;
 using UnityEngine;
