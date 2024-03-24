@@ -1,6 +1,5 @@
 using Game.Components;
 using Game.Entities;
-using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
 
@@ -13,16 +12,16 @@ namespace Game.Enemies
 
 
         [Inject]
-        private void Construct(TickableProcessor tickableProcessor, PlayerProvider playerProvider)
+        private void Construct()
         {
             var destroy = new DestroyComponent();
-            Add(destroy);
+            AddEntityComponent(destroy);
             health.OnDeath += destroy.Destroy;
         }
 
         private void OnDestroy()
         {
-            health.OnDeath -= Get<DestroyComponent>().Destroy;
+            health.OnDeath -= GetEntityComponent<DestroyComponent>().Destroy;
         }
     }
 }

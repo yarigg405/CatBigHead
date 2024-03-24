@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 
-
 namespace Infrastructure.LoadingPipeline
 {
     public sealed class GameLoader : MonoBehaviour
@@ -9,10 +8,7 @@ namespace Infrastructure.LoadingPipeline
 
         private void Start()
         {
-            foreach (var task in loadingTasks)
-            {
-                task.Do();
-            }
+            foreach (var task in loadingTasks) task.DoTask();
         }
     }
 }

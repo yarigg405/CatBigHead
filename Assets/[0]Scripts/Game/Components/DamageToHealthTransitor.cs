@@ -5,8 +5,8 @@ namespace Game.Components
 {
     internal sealed class DamageToHealthTransitor : MonoBehaviour
     {
-        [SerializeField] private HealthComponent health;
         [SerializeField] private DamageReceiveComponent damageReceiver;
+        [SerializeField] private HealthComponent health;
 
         private void Awake()
         {

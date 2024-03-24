@@ -1,5 +1,5 @@
-using Infrastructure.GameSystem;
 using System;
+using Infrastructure.GameSystem;
 using UnityEngine;
 
 
@@ -7,13 +7,22 @@ namespace Game.Components
 {
     internal sealed class ShootTimerComponent : MonoBehaviour, ITickable
     {
-        [SerializeField] private float timeBetweenBursts = 1f;
+        private int _currentShotsCount;
+
+        private float _currentTimeBetweenBursts;
+        private float _currentTimeBetweenShots;
         [SerializeField] private int shotsCountInBurst = 3;
+        [SerializeField] private float timeBetweenBursts = 1f;
         [SerializeField] private float timeBetweenShots = 0.2f;
 
-        private float _currentTimeBetweenBursts = 0f;
-        private float _currentTimeBetweenShots = 0;
-        private int _currentShotsCount = 0;
+        void ITickable.Tick(float deltaTime)
+        {
+            if (!enabled) return;
+            if (_currentTimeBetweenBursts > 0)
+                HandleTimeBetweenBursts(deltaTime);
+
+            else if (_currentTimeBetweenShots > 0) HandleTimeBetweenShots(deltaTime);
+        }
 
         internal event Action OnShoot;
 
@@ -28,20 +37,6 @@ namespace Game.Components
             _currentTimeBetweenBursts = timeBetweenBursts;
             _currentTimeBetweenShots = timeBetweenShots;
             _currentShotsCount = shotsCountInBurst;
-        }
-
-        void ITickable.Tick(float deltaTime)
-        {
-            if (!enabled) return;
-            if (_currentTimeBetweenBursts > 0)
-            {
-                HandleTimeBetweenBursts(deltaTime);
-            }
-
-            else if (_currentTimeBetweenShots > 0)
-            {
-                HandleTimeBetweenShots(deltaTime);
-            }
         }
 
         private void HandleTimeBetweenBursts(float deltaTime)
@@ -65,9 +60,7 @@ namespace Game.Components
                 ResetShooting();
 
             else
-            {
                 _currentTimeBetweenShots = timeBetweenShots;
-            }
         }
     }
 }

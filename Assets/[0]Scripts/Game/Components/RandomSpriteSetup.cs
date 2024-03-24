@@ -1,7 +1,6 @@
 using UnityEngine;
 using Yrr.Utils;
 
-
 namespace Game
 {
     internal sealed class RandomSpriteSetup : MonoBehaviour

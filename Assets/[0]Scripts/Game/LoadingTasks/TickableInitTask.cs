@@ -7,12 +7,12 @@ namespace Game.LoadingTasks
 {
     internal sealed class TickableInitTask : LoadingTask
     {
+        [Inject] private readonly GameMachine _gameMachine;
         [Inject] private readonly TickableProcessor _tickableProcessor;
-        [Inject] private readonly GameManager _gameManager;
 
-        internal override void Do()
+        internal override void DoTask()
         {
-            _gameManager.AddListener(_tickableProcessor);
+            _gameMachine.AddListener(_tickableProcessor);
         }
     }
 }

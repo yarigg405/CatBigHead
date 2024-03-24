@@ -1,5 +1,5 @@
-using Game.Entities;
 using System;
+using Game.Entities;
 using UnityEngine;
 
 
@@ -10,26 +10,20 @@ namespace Game.Components
         [SerializeField] private int damage;
         [SerializeField] private TeamComponent myTeam;
 
-        public event Action OnDamageDealed;
+        public event Action OnDamageDealt;
 
 
         private void OnTriggerEnter(Collider other)
         {
-            if (other.TryGetComponent<IEntity>(out var entity))
-            {
-                if (entity.TryGet<TeamComponent>(out var otherTeam))
-                {
-                    if (myTeam.Team != otherTeam.Team)
-                    {
-                        if (entity.TryGet<DamageReceiveComponent>(out var otherReceiver))
-                        {
-                            DealDamage(otherReceiver);
-                            OnDamageDealed?.Invoke();
-                        }
-                    }
-                }
-            }
+            if (!other.TryGetComponent<IEntity>(out var entity)) return;
+            if (!entity.TryGetEntityComponent<TeamComponent>(out var otherTeam)) return;
+            if (myTeam.Team == otherTeam.Team) return;
+            if (!entity.TryGetEntityComponent<DamageReceiveComponent>(out var otherReceiver)) return;
+
+            DealDamage(otherReceiver);
+            OnDamageDealt?.Invoke();
         }
+
 
         private void DealDamage(DamageReceiveComponent receiver)
         {

@@ -12,13 +12,15 @@ namespace Game
         {
             var shotAngleDelta = 360f / bulletsCountInBurst;
 
-            for (int i = 0; i < bulletsCountInBurst; i++)
+            for (var i = 0; i < bulletsCountInBurst; i++)
             {
                 var bullet = pool.SpawnObject();
 
-                bullet.transform.position = transform.position;
-                bullet.transform.rotation = Quaternion.Euler(i * shotAngleDelta, 90f, 0f);
-                bullet.Get<MoveComponent>().Move(bullet.transform.forward);
+                var tr = bullet.transform;
+
+                tr.position = transform.position;
+                tr.rotation = Quaternion.Euler(i * shotAngleDelta, 90f, 0f);
+                bullet.GetEntityComponent<MoveComponent>().Move(tr.forward);
             }
         }
     }

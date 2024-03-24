@@ -4,13 +4,12 @@ using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
 
-
 namespace Game
 {
     internal sealed class EffectsSpawner : MonoBehaviour
     {
-        [SerializeField] private EffectsPool pool;
         private TickableProcessor _tickableProcessor;
+        [SerializeField] private EffectsPool pool;
 
         internal void SpawnEffect()
         {
@@ -24,17 +23,14 @@ namespace Game
             pool.OnNewObjectInstantiated += SetupEffect;
             _tickableProcessor = processor;
 
-            foreach (var bullet in pool.GetPooledObjects())
-            {
-                SetupEffect(bullet);
-            }
+            foreach (var bullet in pool.GetPooledObjects()) SetupEffect(bullet);
         }
 
         private void SetupEffect(EffectEntity effect)
         {
             effect.Construct();
             _tickableProcessor.AddTickable(effect);
-            effect.Get<DestroyComponent>().OnDestroy += () => pool.DespawnObject(effect);
+            effect.GetEntityComponent<DestroyComponent>().OnDestroy += () => pool.DespawnObject(effect);
         }
     }
 }

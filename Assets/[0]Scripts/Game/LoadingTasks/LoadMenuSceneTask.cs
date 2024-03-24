@@ -9,7 +9,7 @@ namespace Game.LoadingTasks
     {
         [Inject] private readonly ScenesLoader _scenesLoader;
 
-        internal override void Do()
+        internal override void DoTask()
         {
             _scenesLoader.LoadMenuScene();
         }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Unity.VisualScripting.YamlDotNet.Core.Tokens;
 using UnityEngine;
 
 
@@ -8,10 +7,10 @@ namespace Yrr.Utils
 {
     public class MultiPool<T> : MonoBehaviour where T : Component
     {
-        [SerializeField] private Transform objectsInPoolContainer;
+        private readonly Dictionary<int, int> _cachedIds = new();
 
         private readonly Dictionary<int, Queue<T>> _pooledObjects = new();
-        private readonly Dictionary<int, int> _cachedIds = new();
+        [SerializeField] private Transform objectsInPoolContainer;
 
         public event Action<T> OnNewObjectInstantiated;
         public event Action<T> OnObjectSpawned;
@@ -20,10 +19,7 @@ namespace Yrr.Utils
         public void PopulateWith(T prefab, int amount)
         {
             var key = prefab.GetInstanceID();
-            if (!_pooledObjects.ContainsKey(key))
-            {
-                _pooledObjects.Add(key, new Queue<T>());
-            }
+            if (!_pooledObjects.ContainsKey(key)) _pooledObjects.Add(key, new Queue<T>());
 
             while (amount > 0)
             {
@@ -37,10 +33,7 @@ namespace Yrr.Utils
         {
             var key = prefab.GetInstanceID();
 
-            if (!_pooledObjects.ContainsKey(key))
-            {
-                _pooledObjects.Add(key, new Queue<T>());
-            }
+            if (!_pooledObjects.ContainsKey(key)) _pooledObjects.Add(key, new Queue<T>());
 
             var queue = _pooledObjects[key];
             if (queue.TryDequeue(out var go))
@@ -85,13 +78,9 @@ namespace Yrr.Utils
 
         public IEnumerable<T> GetPooledObjects()
         {
-            foreach(var pool in  _pooledObjects)
-            {
-                foreach (var pooled in pool.Value)
-                {
-                   yield return pooled;
-                }
-            }
+            foreach (var pool in _pooledObjects)
+            foreach (var pooled in pool.Value)
+                yield return pooled;
         }
     }
 }

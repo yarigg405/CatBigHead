@@ -1,8 +1,3 @@
-using UnityEngine;
-using UnityEngine.UI;
-using TMPro;
-
-
 namespace Game
 {
     public static class Constants

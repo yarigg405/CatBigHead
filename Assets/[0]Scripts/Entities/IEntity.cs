@@ -2,8 +2,8 @@
 {
     internal interface IEntity
     {
-        T Get<T>();
+        T GetEntityComponent<T>();
 
-        bool TryGet<T>(out T element);
+        bool TryGetEntityComponent<T>(out T element);
     }
 }

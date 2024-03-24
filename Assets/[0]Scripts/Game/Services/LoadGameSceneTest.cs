@@ -8,15 +8,21 @@ namespace Game
     {
         private void Start()
         {
-            if (LastSceneLoaderTest.LastSceneName == null || LastSceneLoaderTest.LastSceneName.Length == 0)
+            var loadSceneName = "GameScene";
+
+            if (LastSceneLoaderTest.LastSceneName == null)
             {
-                SceneManager.LoadScene("GameScene");
+                SceneManager.LoadScene(loadSceneName);
+                return;
             }
 
-            else
+            if (LastSceneLoaderTest.LastSceneName.Length == 0)
             {
-                SceneManager.LoadScene(LastSceneLoaderTest.LastSceneName);
+                SceneManager.LoadScene(loadSceneName);
+                return;
             }
+
+            SceneManager.LoadScene(LastSceneLoaderTest.LastSceneName);
         }
     }
 }

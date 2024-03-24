@@ -3,7 +3,6 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-
 namespace Infrastructure.DI
 {
     internal sealed class SceneLifetimeScope : LifetimeScope

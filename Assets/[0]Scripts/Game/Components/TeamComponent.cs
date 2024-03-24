@@ -13,6 +13,6 @@ namespace Game.Components
     public enum Team
     {
         Player,
-        Enemy,
+        Enemy
     }
 }

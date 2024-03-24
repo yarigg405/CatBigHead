@@ -14,19 +14,42 @@ namespace Game
 {
     internal sealed class EnemiesSpawner : MonoBehaviour, ITickable, IGamePauseListener
     {
-        [SerializeField] private SpawnNode[] spawnNodes;
-        [SerializeField] private EnemiesPool enemiesPool;
-        [SerializeField] private Transform gameObjectsContainer;
-        private Vector2 _centerSpawnPoint;
-
-        private int _nextNodeIndex = 0;
-        private float _currentSpawnTimer = 0f;
+        [Inject] private readonly GameMachine _gameMachine;
+        [Inject] private readonly IObjectResolver _objectResolver;
 
         [Inject] private readonly TickableProcessor _tickableProcessor;
-        [Inject] private readonly GameManager _gameManager;
-        [Inject] private readonly PlayerProvider _playerProvider;
-        [Inject] private readonly IObjectResolver _objectResolver;
-        private bool _isPaused = false;
+        private Vector2 _centerSpawnPoint;
+        private float _currentSpawnTimer;
+        private bool _isPaused;
+
+        private int _nextNodeIndex;
+        [SerializeField] private EnemiesPool enemiesPool;
+        [SerializeField] private Transform gameObjectsContainer;
+        [SerializeField] private SpawnNode[] spawnNodes;
+
+
+        void IGamePauseListener.OnGamePaused()
+        {
+            _isPaused = true;
+        }
+
+        void IGamePauseListener.OnGameUnPaused()
+        {
+            _isPaused = false;
+        }
+
+
+        void ITickable.Tick(float deltaTime)
+        {
+            if (_nextNodeIndex >= spawnNodes.Length) return;
+
+            _currentSpawnTimer += deltaTime;
+            if (_currentSpawnTimer >= spawnNodes[_nextNodeIndex].SpawnOnTimeSeconds)
+            {
+                SpawnNode();
+                _nextNodeIndex++;
+            }
+        }
 
 
         private void Start()
@@ -35,29 +58,24 @@ namespace Game
             _centerSpawnPoint = new Vector2(screenMaxPoint.x, screenMaxPoint.y / 2f);
 
             _tickableProcessor.AddTickable(this);
-            _gameManager.AddListener(this);
+            _gameMachine.AddListener(this);
 
 
             InitializePool(spawnNodes);
 
             var allPooled = enemiesPool.GetPooledObjects();
-            foreach (var pooled in allPooled)
-            {
-                SetupEnemy(pooled);
-            }
+            foreach (var pooled in allPooled) SetupEnemy(pooled);
 
             enemiesPool.OnNewObjectInstantiated += SetupEnemy;
         }
 
-        private void InitializePool(SpawnNode[] spawnNodes)
+        private void InitializePool(SpawnNode[] nodes)
         {
             Dictionary<EnemyEntity, int> prefabs = new();
-            for (int i = 0; i < spawnNodes.Length; i++)
+            for (var i = 0; i < nodes.Length; i++)
             {
-                var node = spawnNodes[i];
-                if (!prefabs.ContainsKey(node.EnemyPrefab))
-                    prefabs.Add(node.EnemyPrefab, 0);
-
+                var node = nodes[i];
+                prefabs.TryAdd(node.EnemyPrefab,0);
                 prefabs[node.EnemyPrefab] += node.EnemySpawnSettings.SpawnCount + 1;
             }
 
@@ -73,8 +91,8 @@ namespace Game
             if (_tickableProcessor)
                 _tickableProcessor.RemoveTickable(this);
 
-            if (_gameManager)
-                _gameManager.RemoveListener(this);
+            if (_gameMachine)
+                _gameMachine.RemoveListener(this);
 
             enemiesPool.OnNewObjectInstantiated -= SetupEnemy;
         }
@@ -84,20 +102,7 @@ namespace Game
         {
             _objectResolver.InjectGameObject(entity.gameObject);
             _tickableProcessor.AddTickable(entity);
-            entity.Get<DestroyComponent>().OnDestroy += () => enemiesPool.DespawnObject(entity);
-        }
-
-
-        void ITickable.Tick(float deltaTime)
-        {
-            if (_nextNodeIndex >= spawnNodes.Length) return;
-
-            _currentSpawnTimer += deltaTime;
-            if (_currentSpawnTimer >= spawnNodes[_nextNodeIndex].SpawnOnTimeSeconds)
-            {
-                SpawnNode();
-                _nextNodeIndex++;
-            }
+            entity.GetEntityComponent<DestroyComponent>().OnDestroy += () => enemiesPool.DespawnObject(entity);
         }
 
         private void SpawnNode()
@@ -122,22 +127,10 @@ namespace Game
             enemy.transform.localPosition = spawnPoint;
         }
 
-
-
-        void IGamePauseListener.OnGamePaused()
-        {
-            _isPaused = true;
-        }
-
-        void IGamePauseListener.OnGameUnPaused()
-        {
-            _isPaused = false;
-        }
-
         private IEnumerator SpawnGroupCoroutine(SpawnNode node)
         {
-            int countOfSpawn = node.EnemySpawnSettings.SpawnCount;
-            float currentSpawnTime = node.EnemySpawnSettings.DelayBetweenSpawn;
+            var countOfSpawn = node.EnemySpawnSettings.SpawnCount;
+            var currentSpawnTime = node.EnemySpawnSettings.DelayBetweenSpawn;
             var spawnPoint = _centerSpawnPoint + node.SpawnPositionRelativeScreenEdge;
 
             while (countOfSpawn > 0)
@@ -153,21 +146,18 @@ namespace Game
 
                     currentSpawnTime += Time.deltaTime;
                 }
+
                 yield return new WaitForEndOfFrame();
             }
         }
     }
 
 
-
-
-
-
     [Serializable]
     internal struct SpawnNode
     {
         public EnemyEntity EnemyPrefab;
-        public float SpawnOnTimeSeconds;    //On which second spawn from level start
+        public float SpawnOnTimeSeconds; //On which second spawn from level start
         public Vector2 SpawnPositionRelativeScreenEdge;
         public EnemySpawnSettings EnemySpawnSettings;
     }

@@ -1,7 +1,6 @@
 using Infrastructure.GameSystem;
 using UnityEngine;
 
-
 namespace Game
 {
     internal sealed class PlayerInput : MonoBehaviour, ITickable

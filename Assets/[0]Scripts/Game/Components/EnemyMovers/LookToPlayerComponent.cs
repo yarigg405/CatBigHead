@@ -1,6 +1,6 @@
+using System.Collections;
 using Game.Player;
 using Infrastructure.GameSystem;
-using System.Collections;
 using UnityEngine;
 using VContainer;
 
@@ -9,8 +9,15 @@ namespace Game.Components
 {
     internal sealed class LookToPlayerComponent : MonoBehaviour, ITickable
     {
-        [SerializeField] private bool lookOnlyOnStart;
         private Transform _playerTransform;
+        [SerializeField] private bool lookOnlyOnStart;
+
+        void ITickable.Tick(float deltaTime)
+        {
+            if (!enabled) return;
+            if (lookOnlyOnStart) return;
+            Rotate();
+        }
 
         [Inject]
         private void Construct(PlayerEntity player)
@@ -32,16 +39,9 @@ namespace Game.Components
             Rotate();
         }
 
-        void ITickable.Tick(float deltaTime)
-        {
-            if (!enabled) return;
-            if (lookOnlyOnStart) return;
-            Rotate();
-        }
-
         private void Rotate()
         {
-            float y = GetAngle() - 90;
+            var y = GetAngle() - 90;
             transform.rotation = Quaternion.Euler(0, 0, y);
         }
 
@@ -53,8 +53,9 @@ namespace Game.Components
             if (p1 == p2) return 0;
 
             Vector2 curPos = p1 - p2;
-            float cos = curPos.y / Mathf.Sqrt((curPos.x * curPos.x + curPos.y * curPos.y));
-            float angle = Mathf.Acos(cos) * Mathf.Rad2Deg;
+            var squareLenght = Mathf.Pow(curPos.x, 2) * Mathf.Pow(curPos.y, 2);
+            var cos = curPos.y / Mathf.Sqrt(squareLenght);
+            var angle = Mathf.Acos(cos) * Mathf.Rad2Deg;
             if (curPos.x > 0) angle *= -1;
 
             return angle + 180;

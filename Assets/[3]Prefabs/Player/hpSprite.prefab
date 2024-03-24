@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 6172943950422938613}
   - component: {fileID: 7353359875950093292}
   - component: {fileID: 8046157875107779406}
-  - component: {fileID: 361818660152877480}
   m_Layer: 0
   m_Name: hpSprite
   m_TagString: Untagged
@@ -107,16 +106,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &361818660152877480
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7716726871549664947}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a7d0407a98f8c4489b9bf7b746ed2e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  followSpeed: 5

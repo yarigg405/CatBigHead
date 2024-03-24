@@ -1,7 +1,6 @@
 ﻿using System;
 using UnityEngine;
 
-
 namespace Game.Components
 {
     internal sealed class DamageReceiveComponent : MonoBehaviour, IComponent

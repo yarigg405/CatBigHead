@@ -2,7 +2,6 @@ using Game.Components;
 using Game.Entities;
 using UnityEngine;
 
-
 namespace Game
 {
     internal sealed class EffectOnDestroy : MonoBehaviour
@@ -11,15 +10,14 @@ namespace Game
         [SerializeField] private EffectsSpawner effectsSpawner;
 
 
-
         private void Awake()
         {
-            controlledEntity.Get<DestroyComponent>().OnDestroy += ShowEffect;
+            controlledEntity.GetEntityComponent<DestroyComponent>().OnDestroy += ShowEffect;
         }
 
         private void OnDestroy()
         {
-            controlledEntity.Get<DestroyComponent>().OnDestroy -= ShowEffect;
+            controlledEntity.GetEntityComponent<DestroyComponent>().OnDestroy -= ShowEffect;
         }
 
         private void ShowEffect()

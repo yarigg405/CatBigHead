@@ -1,6 +1,8 @@
 namespace Infrastructure.GameSystem
 {
-    public interface IGameListener { }
+    public interface IGameListener
+    {
+    }
 
     public interface IGameStartListener : IGameListener
     {

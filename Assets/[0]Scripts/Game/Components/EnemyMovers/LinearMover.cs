@@ -6,18 +6,18 @@ namespace Game.Components
 {
     internal sealed class LinearMover : MonoBehaviour, ITickable
     {
-        [SerializeField] private Vector2 velocity = new Vector2(-1f, 0f);
         private Vector3 _velocity;
+        [SerializeField] private Vector2 velocity = new(-1f, 0f);
+
+        void ITickable.Tick(float deltaTime)
+        {
+            transform.position += _velocity * deltaTime;
+        }
 
 
         private void OnEnable()
         {
             _velocity = velocity;
-        }
-
-        void ITickable.Tick(float deltaTime)
-        {
-            transform.position = transform.position + _velocity * deltaTime;
         }
     }
 }

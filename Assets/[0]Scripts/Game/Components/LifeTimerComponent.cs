@@ -8,24 +8,21 @@ namespace Game
 {
     internal sealed class LifeTimerComponent : MonoBehaviour, ITickable, IComponent
     {
+        private float _currentLifeTime;
         [SerializeField] private Entity entity;
         [SerializeField] private float lifeTime = 3f;
-        private float _currentLifeTime = 0f;
-
-
-        private void OnEnable()
-        {
-            _currentLifeTime = lifeTime;
-        }
 
         void ITickable.Tick(float deltaTime)
         {
             _currentLifeTime -= deltaTime;
 
-            if (_currentLifeTime <= 0f)
-            {
-                entity.Get<DestroyComponent>().Destroy();
-            }
+            if (_currentLifeTime <= 0f) entity.GetEntityComponent<DestroyComponent>().Destroy();
+        }
+
+
+        private void OnEnable()
+        {
+            _currentLifeTime = lifeTime;
         }
     }
 }

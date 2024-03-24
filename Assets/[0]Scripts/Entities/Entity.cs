@@ -9,12 +9,12 @@ namespace Game.Entities
     {
         private readonly Dictionary<Type, object> _components = new();
 
-        public T Get<T>()
+        public T GetEntityComponent<T>()
         {
             return (T)_components[typeof(T)];
         }
 
-        public bool TryGet<T>(out T element)
+        public bool TryGetEntityComponent<T>(out T element)
         {
             if (_components.TryGetValue(typeof(T), out var result))
             {
@@ -22,16 +22,16 @@ namespace Game.Entities
                 return true;
             }
 
-            element = default(T);
+            element = default;
             return false;
         }
 
-        public void Add(object component)
+        public void AddEntityComponent(object component)
         {
             _components.Add(component.GetType(), component);
         }
 
-        public void Add(object component, Type componentType)
+        public void AddEntityComponent(object component, Type componentType)
         {
             _components.Add(componentType, component);
         }

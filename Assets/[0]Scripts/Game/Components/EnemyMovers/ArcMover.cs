@@ -6,16 +6,10 @@ namespace Game.Components
 {
     internal sealed class ArcMover : MonoBehaviour, ITickable
     {
-        [SerializeField] private float movingSpeed = 1f;
-        [SerializeField] private float arcHeight = 20f;
-        private float _verticalSpeed;
         private float _targetPosY;
-
-
-        private void OnEnable()
-        {
-            _targetPosY = transform.position.y + arcHeight;
-        }
+        private float _verticalSpeed;
+        [SerializeField] private float arcHeight = 20f;
+        [SerializeField] private float movingSpeed = 1f;
 
 
         void ITickable.Tick(float deltaTime)
@@ -27,6 +21,12 @@ namespace Game.Components
 
 
             transform.Translate(-x, y, 0);
+        }
+
+
+        private void OnEnable()
+        {
+            _targetPosY = transform.position.y + arcHeight;
         }
     }
 }

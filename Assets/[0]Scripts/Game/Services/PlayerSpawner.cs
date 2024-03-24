@@ -4,19 +4,17 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
-
 namespace Game
 {
     internal sealed class PlayerSpawner : MonoBehaviour
     {
-        [SerializeField] private PlayerEntity playerPrefab;
-        [SerializeField] private Transform spawnRoot;
-        [SerializeField] Vector3 spawnPosition;
+        [Inject] private readonly PlayerProvider _playerProvider;
 
         [Inject] private readonly IObjectResolver _resolver;
-        [Inject] private readonly PlayerProvider _playerProvider;
         [Inject] private readonly TickableProcessor _tickableProcessor;
-       
+        [SerializeField] private PlayerEntity playerPrefab;
+        [SerializeField] private Vector3 spawnPosition;
+        [SerializeField] private Transform spawnRoot;
 
 
         internal void SpawnPlayer()
