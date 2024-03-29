@@ -82,5 +82,14 @@ namespace Yrr.Utils
             foreach (var pooled in pool.Value)
                 yield return pooled;
         }
+
+        public int GetCountOf(T prefab)
+        {
+            var key = prefab.GetInstanceID();
+            if (_pooledObjects.TryGetValue(key, out var queue))
+                return queue.Count;
+
+            return 0;
+        }
     }
 }

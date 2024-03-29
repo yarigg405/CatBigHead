@@ -14,7 +14,7 @@ namespace Game
 
             for (var i = 0; i < bulletsCountInBurst; i++)
             {
-                var bullet = pool.SpawnObject();
+                var bullet = CreateBullet();
 
                 var tr = bullet.transform;
 

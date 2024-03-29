@@ -1,21 +1,17 @@
 using Game.Components;
 using Game.Entities;
 using UnityEngine;
-using VContainer;
 
 
 namespace Game
 {
     internal sealed class BulletEntity : TickableEntity
     {
-        [SerializeField] private DamageDealComponent damageDealer;
+        [SerializeField] private DamageDealComponent damageDealer;       
 
-
-        [Inject]
-        private void Construct()
+        private void Start()
         {
-            var destroy = new DestroyComponent();
-            AddEntityComponent(destroy);
+            var destroy = GetEntityComponent<DestroyComponent>();
             damageDealer.OnDamageDealt += destroy.Destroy;
         }
 

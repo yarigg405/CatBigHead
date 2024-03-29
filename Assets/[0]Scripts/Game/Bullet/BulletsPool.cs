@@ -1,8 +1,9 @@
 using Yrr.Utils;
 
+
 namespace Game
 {
-    internal sealed class BulletsPool : Pool<BulletEntity>
+    internal sealed class BulletsPool : MultiPool<BulletEntity>
     {
     }
 }

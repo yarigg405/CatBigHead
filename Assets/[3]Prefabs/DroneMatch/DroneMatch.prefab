@@ -306,11 +306,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a9a78eeaa1868429ce149567906db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfScreenMinX: -2
-  outOfScreenMaxX: 10
-  outOfScreenMinY: -2
-  outOfScreenMaxY: 2
   controlledEntity: {fileID: 8224003784283218034}
+  outOfScreenMaxX: 10
+  outOfScreenMaxY: 2
+  outOfScreenMinX: -2
+  outOfScreenMinY: -2
 --- !u!54 &8224003784283218036
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -352,39 +352,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb5c43a0390064aabfa50a85658701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 8224003784283218039}
   damageReceiver: {fileID: 8224003784283218033}
---- !u!1 &8224003784905719590
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8224003784905719585}
-  m_Layer: 0
-  m_Name: pool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8224003784905719585
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8224003784905719590}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 8224003785605430072}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  health: {fileID: 8224003784283218039}
 --- !u!1 &8224003785605430073
 GameObject:
   m_ObjectHideFlags: 0
@@ -396,7 +365,6 @@ GameObject:
   - component: {fileID: 8224003785605430072}
   - component: {fileID: 8224003785605430021}
   - component: {fileID: 8224003785605430074}
-  - component: {fileID: 8224003785605430075}
   m_Layer: 0
   m_Name: shooter
   m_TagString: Untagged
@@ -415,8 +383,7 @@ Transform:
   m_LocalPosition: {x: -0.414, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8224003784905719585}
+  m_Children: []
   m_Father: {fileID: 8224003784283218045}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 270, z: 0}
@@ -432,8 +399,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6344496bbdc75b84882873ad23fe59b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenBursts: 1
   shotsCountInBurst: 3
+  timeBetweenBursts: 1
   timeBetweenShots: 0.1
 --- !u!114 &8224003785605430074
 MonoBehaviour:
@@ -447,23 +414,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a2d15f1ef624e45a2e4c9631d5a86e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pool: {fileID: 8224003785605430075}
   timerComponent: {fileID: 8224003785605430021}
---- !u!114 &8224003785605430075
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8224003785605430073}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: eda7245e0dd7dc842982d213cbdb6da2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1831786962020802400, guid: 08167b0b2cd6b0049bcec7248a5676c5, type: 3}
-  objectsInPoolContainer: {fileID: 8224003784905719585}
-  initializeCount: 5
+  bulletPrefab: {fileID: 1831786962020802400, guid: 08167b0b2cd6b0049bcec7248a5676c5, type: 3}
 --- !u!1 &8548991284408533082
 GameObject:
   m_ObjectHideFlags: 0
