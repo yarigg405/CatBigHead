@@ -4,7 +4,6 @@ using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
-using static UnityEngine.EventSystems.EventTrigger;
 
 
 namespace Game
@@ -15,6 +14,8 @@ namespace Game
 
         [Inject] private readonly TickableProcessor _tickableProcessor;
         [Inject] private readonly IObjectResolver _resolver;
+        [Inject] private readonly ModificationsBlackboard _modificationsBlackboard;
+
 
         private void OnEnable()
         {
@@ -26,10 +27,15 @@ namespace Game
             pool.OnNewObjectInstantiated -= SetupBullet;
         }
 
-
         internal Entity SpawnBullet(BulletEntity bulletPrefab)
         {
             var bullet = pool.SpawnObject(bulletPrefab, null);
+            var team = bullet.GetEntityComponent<TeamComponent>().Team;
+            var mod = team == Team.Player ?
+                _modificationsBlackboard.GetVariable<float>(BlackboardConstants.BulletSpeedMod_Player) :
+                _modificationsBlackboard.GetVariable<float>(BlackboardConstants.BulletSpeedMod_Enemy);
+
+            bullet.GetEntityComponent<MoveComponent>().MoveSpeedMoficator = mod;
             return bullet;
         }
 

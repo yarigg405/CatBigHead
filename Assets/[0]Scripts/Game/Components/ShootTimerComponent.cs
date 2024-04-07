@@ -1,11 +1,11 @@
-using System;
 using Infrastructure.GameSystem;
+using System;
 using UnityEngine;
 
 
 namespace Game.Components
 {
-    internal sealed class ShootTimerComponent : MonoBehaviour, ITickable
+    internal sealed class ShootTimerComponent : MonoBehaviour, ITickable, IComponent
     {
         private int _currentShotsCount;
 
@@ -14,6 +14,8 @@ namespace Game.Components
         [SerializeField] private int shotsCountInBurst = 3;
         [SerializeField] private float timeBetweenBursts = 1f;
         [SerializeField] private float timeBetweenShots = 0.2f;
+
+        public float ShotTimeModificator { get; set; } = 1f;
 
         void ITickable.Tick(float deltaTime)
         {
@@ -34,7 +36,7 @@ namespace Game.Components
 
         private void ResetShooting()
         {
-            _currentTimeBetweenBursts = timeBetweenBursts;
+            _currentTimeBetweenBursts = timeBetweenBursts * ShotTimeModificator;
             _currentTimeBetweenShots = timeBetweenShots;
             _currentShotsCount = shotsCountInBurst;
         }

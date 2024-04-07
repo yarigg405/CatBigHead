@@ -17,6 +17,7 @@ namespace Infrastructure.DI
             builder.RegisterComponent(playerInput);
             builder.RegisterComponent(shootingSystem);
             builder.RegisterComponent(effectsSytem);
+            builder.Register<ModificationsBlackboard>(Lifetime.Scoped);
             builder.Register<PlayerProvider>(Lifetime.Scoped);
         }
     }
