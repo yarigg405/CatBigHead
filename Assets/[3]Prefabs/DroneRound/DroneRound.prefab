@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 547295449099091010}
   - component: {fileID: 5220255734246181153}
-  - component: {fileID: 6934995844246958739}
-  - component: {fileID: 9195209126148458152}
   m_Layer: 0
   m_Name: FX
   m_TagString: Untagged
@@ -30,8 +28,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 8886066334503999620}
+  m_Children: []
   m_Father: {fileID: 7238108924707851203}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -48,66 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledEntity: {fileID: 7238108924707851212}
-  effectsSpawner: {fileID: 6934995844246958739}
---- !u!114 &6934995844246958739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188628046208271405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: {fileID: 9195209126148458152}
---- !u!114 &9195209126148458152
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188628046208271405}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ce8146d9163d94bbaf8bf2e602f448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 2897675637289532512, guid: a5b1e28e29d3a4e47a41e2509d8d5d01, type: 3}
-  objectsInPoolContainer: {fileID: 8886066334503999620}
-  initializeCount: 1
---- !u!1 &5711621507330179310
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 8886066334503999620}
-  m_Layer: 0
-  m_Name: effectsPoolContainer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &8886066334503999620
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5711621507330179310}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 547295449099091010}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  effectsSpawner: {fileID: 8983566829296372188}
 --- !u!1 &7238108924707851220
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,6 +64,7 @@ GameObject:
   - component: {fileID: 7238108924707851211}
   - component: {fileID: 3112721673253185999}
   - component: {fileID: 7001482006134315077}
+  - component: {fileID: 8983566829296372188}
   m_Layer: 0
   m_Name: DroneRound
   m_TagString: Untagged
@@ -213,11 +152,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a9a78eeaa1868429ce149567906db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfScreenMinX: -2
-  outOfScreenMaxX: 10
-  outOfScreenMinY: -2
-  outOfScreenMaxY: 2
   controlledEntity: {fileID: 7238108924707851212}
+  outOfScreenMaxX: 10
+  outOfScreenMaxY: 2
+  outOfScreenMinX: -2
+  outOfScreenMinY: -2
 --- !u!54 &7238108924707851210
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -274,6 +213,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: {x: -2, y: 0}
+--- !u!114 &8983566829296372188
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7238108924707851220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 2897675637289532512, guid: a5b1e28e29d3a4e47a41e2509d8d5d01, type: 3}
 --- !u!1 &8195027723108495476
 GameObject:
   m_ObjectHideFlags: 0

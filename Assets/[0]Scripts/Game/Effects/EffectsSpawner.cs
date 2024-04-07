@@ -1,36 +1,28 @@
 using Game.Components;
 using Game.Fx;
-using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
 
+
 namespace Game
 {
-    internal sealed class EffectsSpawner : MonoBehaviour
+    internal sealed class EffectsSpawner : MonoBehaviour, IComponent
     {
-        private TickableProcessor _tickableProcessor;
-        [SerializeField] private EffectsPool pool;
+        [SerializeField] private EffectEntity effectPrefab;
+        private EffectsSytem _effectsSystem;
+
+
+        [Inject]
+        private void Construct(EffectsSytem effectsSystem)
+        {
+            _effectsSystem = effectsSystem;
+            _effectsSystem.PrepareEffect(effectPrefab);
+        }
 
         internal void SpawnEffect()
         {
-            var effect = pool.SpawnObject();
+            var effect = _effectsSystem.SpawnEffect(effectPrefab);
             effect.transform.position = transform.position;
-        }
-
-        [Inject]
-        private void Construct(TickableProcessor processor)
-        {
-            pool.OnNewObjectInstantiated += SetupEffect;
-            _tickableProcessor = processor;
-
-            foreach (var bullet in pool.GetPooledObjects()) SetupEffect(bullet);
-        }
-
-        private void SetupEffect(EffectEntity effect)
-        {
-            effect.Construct();
-            _tickableProcessor.AddTickable(effect);
-            effect.GetEntityComponent<DestroyComponent>().OnDestroy += () => pool.DespawnObject(effect);
         }
     }
 }

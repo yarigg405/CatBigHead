@@ -3,6 +3,8 @@ using Game.Entities;
 using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
+using static UnityEngine.EventSystems.EventTrigger;
 
 
 namespace Game
@@ -12,6 +14,7 @@ namespace Game
         [SerializeField] private BulletsPool pool;
 
         [Inject] private readonly TickableProcessor _tickableProcessor;
+        [Inject] private readonly IObjectResolver _resolver;
 
         private void OnEnable()
         {
@@ -41,10 +44,19 @@ namespace Game
 
         private void SetupBullet(BulletEntity bullet)
         {
+            bullet.SetupEntity();
             _tickableProcessor.AddTickable(bullet);
             var destroyComponent = new DestroyComponent();
+
+            if (bullet.TryGetEntityComponent<EffectsSpawner>(out var effectSpawner))
+            {
+                destroyComponent.OnDestroy += effectSpawner.SpawnEffect;
+            }
+
             destroyComponent.OnDestroy += () => pool.DespawnObject(bullet);
             bullet.AddEntityComponent(destroyComponent);
+
+            _resolver.InjectGameObject(bullet.gameObject);
         }
     }
 }

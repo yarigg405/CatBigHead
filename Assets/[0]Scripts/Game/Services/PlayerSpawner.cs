@@ -20,6 +20,7 @@ namespace Game
         internal void SpawnPlayer()
         {
             var player = Instantiate(playerPrefab, spawnPosition, Quaternion.identity, spawnRoot);
+            player.SetupEntity();
             _resolver.InjectGameObject(player.gameObject);
             _tickableProcessor.AddTickable(player);
 

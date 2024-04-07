@@ -1,6 +1,7 @@
 using Game.Components;
 using Game.Entities;
 
+
 namespace Game.Fx
 {
     internal sealed class EffectEntity : TickableEntity

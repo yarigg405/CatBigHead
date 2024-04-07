@@ -70,6 +70,7 @@ Transform:
   - {fileID: 960627791257829480}
   - {fileID: 3898544916043266043}
   - {fileID: 829614628341664219}
+  - {fileID: 7886711061224610718}
   m_Father: {fileID: 3509329529202806344}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1192,6 +1193,50 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 960627790936639806}
+--- !u!1 &2812978690153632216
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7886711061224610718}
+  - component: {fileID: 6351589405823577380}
+  m_Layer: 0
+  m_Name: GameplayModificationsSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7886711061224610718
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812978690153632216}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 960627789632345056}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6351589405823577380
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2812978690153632216}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7cf880282c340dd429c27f381450b6fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3766737810158141642
 GameObject:
   m_ObjectHideFlags: 0
@@ -1329,6 +1374,7 @@ GameObject:
   m_Component:
   - component: {fileID: 829614628341664219}
   - component: {fileID: 1367883601069103844}
+  - component: {fileID: 4288625216821498962}
   m_Layer: 0
   m_Name: EffectsSystem
   m_TagString: Untagged
@@ -1364,6 +1410,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f07b4410a39adf14ea50e1049a759f37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pool: {fileID: 4288625216821498962}
+--- !u!114 &4288625216821498962
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6225177332872776258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0ce8146d9163d94bbaf8bf2e602f448, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectsInPoolContainer: {fileID: 5777342306772404140}
 --- !u!1 &6290820304559074207
 GameObject:
   m_ObjectHideFlags: 0

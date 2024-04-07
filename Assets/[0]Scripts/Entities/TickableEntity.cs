@@ -1,5 +1,7 @@
 ﻿using Game.Components;
 using Infrastructure.GameSystem;
+using UnityEngine;
+
 
 namespace Game.Entities
 {
@@ -11,10 +13,11 @@ namespace Game.Entities
         {
             if (!isActiveAndEnabled) return;
 
-            for (var i = 1; i < _tickables.Length; i++) _tickables[i].Tick(deltaTime);
+            for (var i = 1; i < _tickables.Length; i++)
+                _tickables[i].Tick(deltaTime);
         }
 
-        protected virtual void Awake()
+        internal void SetupEntity()
         {
             _tickables = GetComponentsInChildren<ITickable>(true);
 

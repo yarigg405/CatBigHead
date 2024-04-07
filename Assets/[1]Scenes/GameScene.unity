@@ -239,5 +239,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameScene
       objectReference: {fileID: 0}
+    - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: modifications.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: modifications.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d320887d8e3c6e49913a36fe7879262, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}

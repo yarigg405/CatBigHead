@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5982989435037879633}
   - component: {fileID: 8655542883692799781}
-  - component: {fileID: 2668630514269766437}
-  - component: {fileID: 4760741524060260377}
   m_Layer: 0
   m_Name: FX
   m_TagString: Untagged
@@ -48,35 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controlledEntity: {fileID: 4918747175575047352}
-  effectsSpawner: {fileID: 2668630514269766437}
---- !u!114 &2668630514269766437
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570759511774195589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pool: {fileID: 4760741524060260377}
---- !u!114 &4760741524060260377
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 570759511774195589}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c0ce8146d9163d94bbaf8bf2e602f448, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 2897675637289532512, guid: a5b1e28e29d3a4e47a41e2509d8d5d01, type: 3}
-  objectsInPoolContainer: {fileID: 4092619575177785425}
-  initializeCount: 1
+  effectsSpawner: {fileID: 6024157369270779885}
 --- !u!1 &3083350503677373313
 GameObject:
   m_ObjectHideFlags: 0
@@ -243,6 +213,7 @@ GameObject:
   - component: {fileID: 550293292925864365}
   - component: {fileID: 305088541980380975}
   - component: {fileID: 3256344658009967542}
+  - component: {fileID: 6024157369270779885}
   m_Layer: 0
   m_Name: smallDrone
   m_TagString: Untagged
@@ -365,11 +336,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5a9a78eeaa1868429ce149567906db8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  outOfScreenMinX: -1
-  outOfScreenMaxX: 8
-  outOfScreenMinY: -1
-  outOfScreenMaxY: 1
   controlledEntity: {fileID: 4918747175575047352}
+  outOfScreenMaxX: 8
+  outOfScreenMaxY: 1
+  outOfScreenMinX: -1
+  outOfScreenMinY: -1
 --- !u!135 &550293292925864365
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -411,8 +382,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4cb5c43a0390064aabfa50a85658701, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: {fileID: 4918747175575047355}
   damageReceiver: {fileID: 4918747175575047357}
+  health: {fileID: 4918747175575047355}
+--- !u!114 &6024157369270779885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4918747175575047345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2431cd438b2c8b84b9ef7886bb739cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectPrefab: {fileID: 2897675637289532512, guid: a5b1e28e29d3a4e47a41e2509d8d5d01, type: 3}
 --- !u!1 &6909010456307352545
 GameObject:
   m_ObjectHideFlags: 0

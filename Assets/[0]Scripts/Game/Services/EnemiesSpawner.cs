@@ -75,7 +75,7 @@ namespace Game
             for (var i = 0; i < nodes.Length; i++)
             {
                 var node = nodes[i];
-                prefabs.TryAdd(node.EnemyPrefab,0);
+                prefabs.TryAdd(node.EnemyPrefab, 0);
                 prefabs[node.EnemyPrefab] += node.EnemySpawnSettings.SpawnCount + 1;
             }
 
@@ -100,9 +100,15 @@ namespace Game
 
         private void SetupEnemy(EnemyEntity entity)
         {
+            entity.SetupEntity();
             _objectResolver.InjectGameObject(entity.gameObject);
             _tickableProcessor.AddTickable(entity);
-            entity.GetEntityComponent<DestroyComponent>().OnDestroy += () => enemiesPool.DespawnObject(entity);
+
+            var destroyComponent = entity.GetEntityComponent<DestroyComponent>();
+            var effectSpawner = entity.GetEntityComponent<EffectsSpawner>();
+            destroyComponent.OnDestroy += effectSpawner.SpawnEffect;
+
+            destroyComponent.OnDestroy += () => enemiesPool.DespawnObject(entity);
         }
 
         private void SpawnNode()

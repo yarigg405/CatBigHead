@@ -11,12 +11,19 @@ namespace Game
         [SerializeField] private ShootTimerComponent timerComponent;
         [SerializeField] private BulletEntity bulletPrefab;
 
-        [Inject] private readonly ShootingSystem _shootingSystem;
+        private ShootingSystem _shootingSystem;
 
+
+        [Inject]
+        private void Construct(ShootingSystem shootingSystem)
+        {
+            _shootingSystem = shootingSystem;
+            _shootingSystem.PrepareBullets(bulletPrefab);
+        }
 
         private void Start()
         {
-            _shootingSystem.PrepareBullets(bulletPrefab);
+
         }
 
         private void OnEnable()
