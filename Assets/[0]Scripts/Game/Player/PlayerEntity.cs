@@ -16,6 +16,10 @@ namespace Game.Player
             var shotTimer = GetEntityComponent<ShootTimerComponent>();
             var timerModificator = _modificationsBlackboard.GetVariable<float>(BlackboardConstants.RateOfFireMod_Player);
             shotTimer.ShotTimeModificator = timerModificator;
+
+            var moving = GetEntityComponent<MoveComponent>();
+            var speedMod = _modificationsBlackboard.GetVariable<float>(BlackboardConstants.MovementSpeed_Player);
+            moving.MoveSpeedMoficator = speedMod;
         }
     }
 }
