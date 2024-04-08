@@ -4,6 +4,7 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 
+
 namespace Game
 {
     internal sealed class PlayerSpawner : MonoBehaviour

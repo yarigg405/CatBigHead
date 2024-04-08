@@ -1193,6 +1193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerSpawner: {fileID: 960627790936639806}
+  gameplayModificationsSystem: {fileID: 6351589405823577380}
 --- !u!1 &2812978690153632216
 GameObject:
   m_ObjectHideFlags: 0

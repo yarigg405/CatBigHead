@@ -11,7 +11,7 @@ namespace Game
         [Inject] private readonly ModificationsBlackboard _modificationsBlackboard;
 
 
-        private void Awake()
+        internal void SetupSystem()
         {
             _modificationsBlackboard.SetVariable(BlackboardConstants.BulletSpeedMod_Player, 1f);
             _modificationsBlackboard.SetVariable(BlackboardConstants.BulletSpeedMod_Enemy, 1f);
@@ -23,7 +23,6 @@ namespace Game
             for (int i = 0; i < modifications.Length; i++)
             {
                 var mod = modifications[i];
-
                 _resolver.Inject(mod);
             }
         }

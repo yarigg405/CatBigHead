@@ -3,20 +3,31 @@ using Infrastructure.GameSystem;
 using UnityEngine;
 using VContainer;
 
+
 namespace Game.Player
 {
-    internal sealed class PlayerMover : MonoBehaviour, ITickable
-    {
-        private PlayerInput _input;
+    internal sealed class PlayerMover : MonoBehaviour, ITickable, IComponent
+    {        
         [SerializeField] internal MoveComponent moveComponent;
+        private PlayerInput _input;
+
+        internal bool IsInverted { get; set; }
 
         void ITickable.Tick(float deltaTime)
         {
-            moveComponent.Move(_input.InputData);
+            if (IsInverted)
+            {
+                moveComponent.Move(-_input.InputData);
+            }
+
+            else
+            {
+                moveComponent.Move(_input.InputData);
+            }
         }
 
         [Inject]
-        internal void Construct(PlayerInput playerInput)
+        private void Construct(PlayerInput playerInput)
         {
             _input = playerInput;
         }

@@ -241,11 +241,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
       propertyPath: modifications.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
       propertyPath: modifications.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 785cb597e245ea748859fcc76b3d49af, type: 2}
+      objectReference: {fileID: 11400000, guid: 26febbd9a06fd854aa83fe1a08d336ef, type: 2}
+    - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: modifications.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5d320887d8e3c6e49913a36fe7879262, type: 2}
+    - target: {fileID: 6351589405823577380, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}
+      propertyPath: modifications.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: d2d73a009321e5e41a8696ccb0a2305d, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d89e10359fb3d547ac4dad50c0e1282, type: 3}

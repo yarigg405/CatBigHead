@@ -14,7 +14,7 @@ namespace Game
 
 
         [Inject]
-        private void Construct(ModificationsBlackboard modificationsBlackboard)
+        private void Construct(ModificationsBlackboard modificationsBlackboard, PlayerProvider playerProvider)
         {
             if (team == Team.Player)
             {
@@ -27,6 +27,9 @@ namespace Game
                 var timerMod = modificationsBlackboard.GetVariable<float>(key);
                 timerMod += rateOfFireModificator;
                 modificationsBlackboard.SetVariable(key, timerMod);
+
+                var shotTimer = playerProvider.Player.GetEntityComponent<ShootTimerComponent>();
+                shotTimer.ShotTimeModificator = timerMod;
             }
 
             else

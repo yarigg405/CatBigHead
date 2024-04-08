@@ -11,6 +11,7 @@ namespace Game
         [Inject] private readonly PlayerInput _playerInput;
         [Inject] private readonly TickableProcessor _tickableProcessor;
         [SerializeField] private PlayerSpawner playerSpawner;
+        [SerializeField] private GameplayModificationsSystem gameplayModificationsSystem;
 
 
         private void Awake()
@@ -27,6 +28,7 @@ namespace Game
 
             _tickableProcessor.AddTickable(_playerInput);
             playerSpawner.SpawnPlayer();
+            gameplayModificationsSystem.SetupSystem();
 
             _gameMachine.StartGame();
         }
